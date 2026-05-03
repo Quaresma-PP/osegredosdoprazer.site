@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Audiolivro - 7 Orações de Padre Pio</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    body, html { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background: linear-gradient(135deg, #1a365d 0%, #0f2042 100%); color: white; min-height: 100vh; font-size: 18px; }
+    .title-font { font-family: 'Cinzel', serif; }
+    .golden-text { color: #d4af37; }
+    .section-divider { display: flex; align-items: center; margin: 30px 0; }
+    .divider-line { flex-grow: 1; height: 2px; background: linear-gradient(to right, transparent, #d4af37, transparent); }
+    .divider-icon { font-size: 28px; color: #d4af37; margin: 0 18px; }
+    .back-btn { background: none; border: none; color: #d4af37; font-size: 1.1rem; font-weight: bold; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .back-btn:hover { color: #fff; text-decoration: underline; }
+    .day-card { background: rgba(10,22,46,0.92); border: 2px solid #d4af37; border-radius: 18px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(0,0,0,0.18); padding: 24px 18px; text-align: center; }
+    .day-badge { background: #d4af37; color: #0f2042; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 20px; display: inline-block; margin-bottom: 12px; }
+    .day-title { font-family: 'Cinzel', serif; color: #d4af37; font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+    .day-description { color: white; font-size: 17px; margin-bottom: 18px; }
+    .audio-player { margin: 0 auto 10px auto; width: 100%; max-width: 320px; background: #162a4b; border-radius: 10px; box-shadow: 0 2px 12px #0003; padding: 10px; display: flex; align-items: center; gap: 14px;}
+    .audio-player button { background: #d4af37; border: none; color: #0f2042; border-radius: 50%; width: 46px; height: 46px; font-size: 26px; display: flex; align-items: center; justify-content: center; transition: background 0.2s;}
+    .audio-player button:hover { background: #fff; color: #d4af37;}
+    .audio-player audio { width: 175px; vertical-align: middle; }
+    @media (max-width: 600px) { .container { padding: 0 5px; } .day-card { padding: 16px 6px; } .audio-player { max-width: 98vw; } }
+  </style>
+</head>
+<!-- ds -->
+<body>
+  <div class="container py-4">
+    <a href="https://conexaoprosperidade.site/inicio-oracoes-principal" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar para o Início</a>
+    <h1 class="title-font golden-text mb-2 text-center">Audiolivro - 7 Orações de Padre Pio</h1>
+    <p class="body-font text-white fs-5 mb-2 text-center" style="font-weight:500;">Ouça cada prece poderosa inspirada em São Padre Pio</p>
+    <div class="section-divider" style="margin: 18px 0;">
+      <div class="divider-line"></div>
+      <div class="divider-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-line"></div>
+    </div>
+    <p class="day-description text-center mb-4" style="font-size:17px; color:#e6e6e6; max-width: 600px; margin-left:auto; margin-right:auto;">
+      Clique no play abaixo do dia desejado para ouvir a oração em áudio e sinta-se acompanhado espiritualmente em sua jornada.
+    </p>
+    <div class="row g-4 justify-content-center">
+
+      <!-- DIA 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 1</div>
+          <h3 class="day-title">Conexão com o Anjo da Guarda</h3>
+          <p class="day-description">Ouça e aproxime-se do seu protetor celestial, seguindo o exemplo de Padre Pio.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(0)" id="btn0"><i class="fas fa-play"></i></button>
+            <audio id="audio0" src="audios/Dia 1.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 2</div>
+          <h3 class="day-title">Oração para a Cura</h3>
+          <p class="day-description">Apresente ao Senhor suas doenças físicas e feridas emocionais para receber a cura divina.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(1)" id="btn1"><i class="fas fa-play"></i></button>
+            <audio id="audio1" src="audios/Dia 2.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 3</div>
+          <h3 class="day-title">Oração para a Prosperidade</h3>
+          <p class="day-description">Peça bênçãos para sua vida material e financeira, confiando na divina providência.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(2)" id="btn2"><i class="fas fa-play"></i></button>
+            <audio id="audio2" src="audios/Dia 3.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 4</div>
+          <h3 class="day-title">Proteção da Família</h3>
+          <p class="day-description">Coloque sua família sob a proteção divina e sob o manto de Maria Santíssima.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(3)" id="btn3"><i class="fas fa-play"></i></button>
+            <audio id="audio3" src="audios/Dia 4.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 5</div>
+          <h3 class="day-title">Paz Interior</h3>
+          <p class="day-description">Clame por essa paz que supera todo entendimento e que só Cristo pode dar.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(4)" id="btn4"><i class="fas fa-play"></i></button>
+            <audio id="audio4" src="audios/Dia 5 .mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 6</div>
+          <h3 class="day-title">Oração de Gratidão</h3>
+          <p class="day-description">Eleve um cântico de louvor e agradecimento a Deus por todas as graças recebidas.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(5)" id="btn5"><i class="fas fa-play"></i></button>
+            <audio id="audio5" src="audios/Dia 6 .mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- DIA 7 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="day-card">
+          <div class="day-badge">Dia 7</div>
+          <h3 class="day-title">Compromisso e Perseverança</h3>
+          <p class="day-description">Assuma um compromisso de perseverar na vida espiritual, seguindo o exemplo de São Padre Pio.</p>
+          <div class="audio-player">
+            <button onclick="toggleAudio(6)" id="btn6"><i class="fas fa-play"></i></button>
+            <audio id="audio6" src="audios/Dia 7.mp3"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIM  -->
+
+    <div class="text-center mt-3 mb-4">
+      <a href="https://conexaoprosperidade.site/inicio-oracoes-principal" class="btn btn-outline-light"><i class="fas fa-home me-2"></i> Voltar ao Início</a>
+    </div>
+  </div>
+  <script>
+    // Pausa todos os áudios e reseta botões play/pause ao abrir outro
+    function toggleAudio(idx) {
+      for (let i = 0; i <= 6; i++) {
+        const audio = document.getElementById('audio' + i);
+        const btn = document.getElementById('btn' + i);
+        if (i === idx) {
+          if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '<i class="fas fa-pause"></i>';
+          } else {
+            audio.pause();
+            btn.innerHTML = '<i class="fas fa-play"></i>';
+          }
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          btn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+      }
+    }
+    // Ao terminar o áudio, reseta botão para play
+    for (let i = 0; i <= 6; i++) {
+      const audio = document.getElementById('audio' + i);
+      const btn = document.getElementById('btn' + i);
+      if(audio){
+        audio.addEventListener('ended', () => {
+          btn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+      }
+    }
+  </script>
+</body>
+</html>
