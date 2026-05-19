@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Audiolivro - 9 Orações de Nossa Senhora Desatadora de Nós</title>
+  <title>Audiolivro — Novena de Nossa Senhora Desatadora de Nós</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -21,71 +21,56 @@
     .divider-line{flex-grow:1;height:2px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
     .divider-icon{font-size:24px;color:#d4af37;margin:0 16px}
 
+    /* Cards */
     .day-card{
       background:rgba(8,18,50,.92);
-      border:2px solid rgba(212,175,55,.65);
+      border:2px solid rgba(212,175,55,.55);
       border-radius:18px;
-      padding:22px 16px;
+      padding:22px 16px 18px;
       text-align:center;
-      transition:transform .25s,box-shadow .25s;
+      transition:transform .25s,box-shadow .25s,border-color .25s;
       box-shadow:0 4px 16px rgba(0,0,0,.20);
       height:100%;
+      display:flex;flex-direction:column;align-items:center;
     }
     .day-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(212,175,55,.28);border-color:rgba(212,175,55,.9)}
+    .day-card.playing{border-color:#d4af37;box-shadow:0 0 28px rgba(212,175,55,.40)}
 
-    .day-badge{background:#d4af37;color:#06103a;padding:7px 16px;border-radius:20px;font-weight:bold;font-size:17px;display:inline-block;margin-bottom:12px}
-    .day-title{font-family:'Cinzel',serif;color:#d4af37;font-size:18px;font-weight:bold;margin-bottom:10px}
-    .day-description{color:#e6e6e6;font-size:15px;margin-bottom:18px;line-height:1.55}
+    .day-badge{background:#d4af37;color:#06103a;padding:6px 16px;border-radius:20px;font-weight:bold;font-size:16px;display:inline-block;margin-bottom:10px}
+    .day-icon{font-size:28px;color:#d4af37;margin-bottom:10px;opacity:.80}
+    .day-title{font-family:'Cinzel',serif;color:#d4af37;font-size:17px;font-weight:bold;margin-bottom:8px}
+    .day-verse{color:rgba(255,255,255,.55);font-size:13px;font-style:italic;margin-bottom:14px;line-height:1.5;flex:1}
 
     /* Player */
     .audio-player{
-      margin:0 auto;
       width:100%;
-      max-width:300px;
-      background:rgba(6,16,58,.80);
-      border:1.5px solid rgba(212,175,55,.35);
-      border-radius:14px;
-      padding:14px 16px;
-      display:flex;
-      align-items:center;
-      gap:12px;
+      background:rgba(6,16,58,.70);
+      border:1.5px solid rgba(212,175,55,.30);
+      border-radius:12px;
+      padding:12px 14px;
+      display:flex;align-items:center;gap:10px;
+      margin-top:auto;
     }
     .play-btn{
-      background:#d4af37;
-      border:none;
-      color:#06103a;
-      border-radius:50%;
-      width:46px;
-      height:46px;
-      font-size:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-shrink:0;
-      cursor:pointer;
-      transition:background .2s,transform .15s;
+      background:#d4af37;border:none;color:#06103a;
+      border-radius:50%;width:42px;height:42px;font-size:16px;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;cursor:pointer;transition:background .2s,transform .15s;
     }
     .play-btn:hover{background:#f2d675;transform:scale(1.08)}
-    .play-btn:active{transform:scale(.96)}
+    .play-btn:active{transform:scale(.94)}
 
-    .progress-wrap{flex:1;display:flex;flex-direction:column;gap:6px}
-    .progress-bar-bg{height:5px;background:rgba(255,255,255,.15);border-radius:3px;cursor:pointer;overflow:hidden}
+    .progress-wrap{flex:1;display:flex;flex-direction:column;gap:5px}
+    .progress-bar-bg{height:4px;background:rgba(255,255,255,.15);border-radius:3px;cursor:pointer;overflow:hidden}
     .progress-bar-fill{height:100%;background:#d4af37;border-radius:3px;width:0%;transition:width .3s linear}
-    .time-label{font-size:.72rem;color:rgba(255,255,255,.45);text-align:right}
-
-    .audio-unavailable{
-      font-size:.82rem;
-      color:rgba(255,255,255,.40);
-      font-style:italic;
-      padding:10px 0 4px;
-    }
+    .time-label{font-size:.68rem;color:rgba(255,255,255,.40);text-align:right}
 
     .btn-voltar{border:2px solid rgba(255,255,255,.55);padding:10px 22px;border-radius:25px;color:#fff;font-size:.95rem;text-decoration:none;display:inline-block;transition:all .3s}
     .btn-voltar:hover{background:rgba(212,175,55,.2);border-color:#d4af37;color:#d4af37}
 
     @media(max-width:575px){
-      .day-card{padding:16px 10px}
-      .day-title{font-size:16px}
+      .day-card{padding:16px 12px 14px}
+      .day-title{font-size:15px}
     }
   </style>
 </head>
@@ -101,30 +86,31 @@
     <div class="text-center mb-2">
       <p style="color:rgba(212,175,55,.65);letter-spacing:4px;font-size:.72rem;font-family:'Cinzel',serif;">— ✦ DEVOÇÃO MARIANA ✦ —</p>
       <h1 class="title-font golden-text mb-1" style="font-size:1.9rem">
-        <i class="fas fa-headphones me-2"></i>Audiolivro — 9 Orações de Nossa Senhora
+        <i class="fas fa-headphones me-2"></i>Audiolivro — Novena Completa
       </h1>
-      <p style="color:rgba(255,255,255,.65);font-size:.95rem">Ouça cada prece poderosa inspirada em Nossa Senhora Desatadora de Nós</p>
+      <p style="color:rgba(255,255,255,.65);font-size:.95rem">Ouça as 9 orações de Nossa Senhora Desatadora de Nós</p>
     </div>
 
     <div class="section-divider">
       <div class="divider-line"></div>
-      <div class="divider-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-icon"><i class="fas fa-ribbon"></i></div>
       <div class="divider-line"></div>
     </div>
 
     <p class="text-center mb-4" style="font-size:15px;color:#e6e6e6;max-width:600px;margin:0 auto 24px">
-      Clique no play do dia desejado para ouvir a oração em áudio e sinta-se acompanhado espiritualmente em sua jornada.
+      Clique no play do dia desejado para ouvir a oração e deixe Nossa Senhora desatar os nós da sua vida.
     </p>
 
     <div class="row g-4 justify-content-center">
 
       <!-- DIA 1 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card0">
           <div class="day-badge">Dia 1</div>
+          <div class="day-icon"><i class="fas fa-hands-praying"></i></div>
           <h3 class="day-title">Entrega dos Nós</h3>
-          <p class="day-description">Apresente a Nossa Senhora todos os nós da sua vida e entregue-os com confiança.</p>
-          <div class="audio-player" id="player0">
+          <p class="day-verse">"Mãe bondosa, apresento a Ti todos os nós da minha vida. Com fé e confiança, peço que Tuas mãos de Mãe os desfaçam."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(0)" id="btn0"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,0)"><div class="progress-bar-fill" id="prog0"></div></div>
@@ -137,11 +123,12 @@
 
       <!-- DIA 2 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card1">
           <div class="day-badge">Dia 2</div>
+          <div class="day-icon"><i class="fas fa-heart-pulse"></i></div>
           <h3 class="day-title">Cura e Saúde</h3>
-          <p class="day-description">Apresente ao Senhor suas doenças físicas e feridas emocionais para receber a cura divina.</p>
-          <div class="audio-player" id="player1">
+          <p class="day-verse">"Senhora da Saúde, desata os nós da doença em meu corpo, em minha mente e em meu espírito. Que a Tua graça me restaure."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(1)" id="btn1"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,1)"><div class="progress-bar-fill" id="prog1"></div></div>
@@ -154,11 +141,12 @@
 
       <!-- DIA 3 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card2">
           <div class="day-badge">Dia 3</div>
+          <div class="day-icon"><i class="fas fa-hand-holding-dollar"></i></div>
           <h3 class="day-title">Prosperidade e Provisão</h3>
-          <p class="day-description">Peça bênçãos para sua vida material e financeira, confiando na divina providência.</p>
-          <div class="audio-player" id="player2">
+          <p class="day-verse">"Mãe Provedora, entrego-te os nós financeiros e materiais da minha vida. Abre os caminhos que parecem fechados."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(2)" id="btn2"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,2)"><div class="progress-bar-fill" id="prog2"></div></div>
@@ -171,11 +159,12 @@
 
       <!-- DIA 4 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card3">
           <div class="day-badge">Dia 4</div>
+          <div class="day-icon"><i class="fas fa-house-chimney-user"></i></div>
           <h3 class="day-title">Proteção da Família</h3>
-          <p class="day-description">Coloque sua família sob o manto protetor de Nossa Senhora, pedindo que Ela desfaça os nós.</p>
-          <div class="audio-player" id="player3">
+          <p class="day-verse">"Coloco minha família sob o Teu manto sagrado. Desata, Mãe, os nós que nos dividem e afastam uns dos outros."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(3)" id="btn3"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,3)"><div class="progress-bar-fill" id="prog3"></div></div>
@@ -188,11 +177,12 @@
 
       <!-- DIA 5 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card4">
           <div class="day-badge">Dia 5</div>
+          <div class="day-icon"><i class="fas fa-dove"></i></div>
           <h3 class="day-title">Paz Interior e Libertação</h3>
-          <p class="day-description">Peça a Nossa Senhora que desfaça os nós da ansiedade, do medo e da angústia.</p>
-          <div class="audio-player" id="player4">
+          <p class="day-verse">"Desata, ó Mãe, os nós da ansiedade e do medo. Que a paz de Deus que excede todo entendimento habite em mim."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(4)" id="btn4"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,4)"><div class="progress-bar-fill" id="prog4"></div></div>
@@ -205,11 +195,12 @@
 
       <!-- DIA 6 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card5">
           <div class="day-badge">Dia 6</div>
+          <div class="day-icon"><i class="fas fa-star"></i></div>
           <h3 class="day-title">Gratidão e Louvor</h3>
-          <p class="day-description">Eleve seu coração em gratidão a Nossa Senhora pelas graças já alcançadas.</p>
-          <div class="audio-player" id="player5">
+          <p class="day-verse">"Elevo meu coração em gratidão, Mãe. Obrigado pelas graças já alcançadas e por cada nó que Tuas mãos já desfizeram."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(5)" id="btn5"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,5)"><div class="progress-bar-fill" id="prog5"></div></div>
@@ -222,11 +213,12 @@
 
       <!-- DIA 7 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card6">
           <div class="day-badge">Dia 7</div>
+          <div class="day-icon"><i class="fas fa-ribbon"></i></div>
           <h3 class="day-title">Renovação e Perseverança</h3>
-          <p class="day-description">Renove sua fé e seu compromisso de viver sob o manto de Nossa Senhora.</p>
-          <div class="audio-player" id="player6">
+          <p class="day-verse">"Renovo minha fé e meu compromisso, Mãe. Que a chama da devoção acesa nesta novena nunca se apague em meu coração."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(6)" id="btn6"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,6)"><div class="progress-bar-fill" id="prog6"></div></div>
@@ -239,11 +231,12 @@
 
       <!-- DIA 8 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card">
+        <div class="day-card" id="card7">
           <div class="day-badge">Dia 8</div>
+          <div class="day-icon"><i class="fas fa-heart"></i></div>
           <h3 class="day-title">Cura dos Relacionamentos</h3>
-          <p class="day-description">Peça a Nossa Senhora que desfaça os nós que afastam pessoas queridas e restaure os laços do amor.</p>
-          <div class="audio-player" id="player7">
+          <p class="day-verse">"Mãe da Reconciliação, desata os nós que afastam os corações. Que o amor de Deus restaure os laços rompidos."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(7)" id="btn7"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,7)"><div class="progress-bar-fill" id="prog7"></div></div>
@@ -256,11 +249,12 @@
 
       <!-- DIA 9 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card" style="border-color:rgba(212,175,55,.9);box-shadow:0 6px 22px rgba(212,175,55,.22)">
+        <div class="day-card" id="card8" style="border-color:rgba(212,175,55,.9);box-shadow:0 6px 22px rgba(212,175,55,.22)">
           <div class="day-badge" style="background:linear-gradient(135deg,#b8870b,#f7de6a,#b8870b)">Dia 9 ✦</div>
+          <div class="day-icon"><i class="fas fa-crown"></i></div>
           <h3 class="day-title">Consagração Final</h3>
-          <p class="day-description">No último dia da novena, consagre-se a Nossa Senhora Desatadora de Nós e renove sua fé para sempre.</p>
-          <div class="audio-player" id="player8">
+          <p class="day-verse">"Consagro-me inteiramente a Ti, Mãe. Não apenas os nós — mas toda a minha vida, meu passado, meu presente e meu futuro."</p>
+          <div class="audio-player">
             <button class="play-btn" onclick="toggleAudio(8)" id="btn8"><i class="fas fa-play"></i></button>
             <div class="progress-wrap">
               <div class="progress-bar-bg" onclick="seekAudio(event,8)"><div class="progress-bar-fill" id="prog8"></div></div>
@@ -286,32 +280,46 @@
     const TOTAL = 9;
 
     function fmtTime(s) {
-      if (isNaN(s)) return '0:00';
+      if (!s || isNaN(s)) return '0:00';
       const m = Math.floor(s / 60);
       const sec = Math.floor(s % 60);
       return m + ':' + (sec < 10 ? '0' : '') + sec;
     }
 
+    function setPlaying(idx, playing) {
+      const card = document.getElementById('card' + idx);
+      const btn = document.getElementById('btn' + idx);
+      if (!card || !btn) return;
+      if (playing) {
+        card.classList.add('playing');
+        btn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        card.classList.remove('playing');
+        btn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    }
+
     function toggleAudio(idx) {
-      for (let i = 0; i < TOTAL; i++) {
-        const a = document.getElementById('audio' + i);
-        const b = document.getElementById('btn' + i);
-        if (!a) continue;
-        if (i === idx) {
-          if (a.paused) {
-            a.play().catch(() => {});
-            b.innerHTML = '<i class="fas fa-pause"></i>';
-          } else {
-            a.pause();
-            b.innerHTML = '<i class="fas fa-play"></i>';
+      const a = document.getElementById('audio' + idx);
+      if (!a) return;
+      if (a.paused) {
+        for (let i = 0; i < TOTAL; i++) {
+          if (i !== idx) {
+            const other = document.getElementById('audio' + i);
+            if (other && !other.paused) {
+              other.pause();
+              other.currentTime = 0;
+              document.getElementById('prog' + i).style.width = '0%';
+              document.getElementById('time' + i).textContent = '0:00';
+              setPlaying(i, false);
+            }
           }
-        } else {
-          a.pause();
-          a.currentTime = 0;
-          b.innerHTML = '<i class="fas fa-play"></i>';
-          document.getElementById('prog' + i).style.width = '0%';
-          document.getElementById('time' + i).textContent = '0:00';
         }
+        a.play().catch(() => {});
+        setPlaying(idx, true);
+      } else {
+        a.pause();
+        setPlaying(idx, false);
       }
     }
 
@@ -326,11 +334,9 @@
     for (let i = 0; i < TOTAL; i++) {
       (function(idx) {
         const a = document.getElementById('audio' + idx);
-        const b = document.getElementById('btn' + idx);
+        if (!a) return;
         const p = document.getElementById('prog' + idx);
         const t = document.getElementById('time' + idx);
-        if (!a) return;
-
         a.addEventListener('timeupdate', () => {
           if (a.duration) {
             p.style.width = (a.currentTime / a.duration * 100) + '%';
@@ -338,9 +344,11 @@
           }
         });
         a.addEventListener('ended', () => {
-          b.innerHTML = '<i class="fas fa-play"></i>';
+          setPlaying(idx, false);
           p.style.width = '0%';
           a.currentTime = 0;
+          t.textContent = '0:00';
+          if (idx + 1 < TOTAL) toggleAudio(idx + 1);
         });
       })(i);
     }
