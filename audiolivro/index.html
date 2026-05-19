@@ -239,25 +239,35 @@
 
       <!-- DIA 8 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card" style="opacity:.65">
+        <div class="day-card">
           <div class="day-badge">Dia 8</div>
           <h3 class="day-title">Cura dos Relacionamentos</h3>
           <p class="day-description">Peça a Nossa Senhora que desfaça os nós que afastam pessoas queridas e restaure os laços do amor.</p>
-          <div style="text-align:center;padding:12px 0;color:rgba(212,175,55,.70);font-size:.88rem;font-style:italic;">
-            <i class="fas fa-clock me-1"></i> Áudio em breve
+          <div class="audio-player" id="player7">
+            <button class="play-btn" onclick="toggleAudio(7)" id="btn7"><i class="fas fa-play"></i></button>
+            <div class="progress-wrap">
+              <div class="progress-bar-bg" onclick="seekAudio(event,7)"><div class="progress-bar-fill" id="prog7"></div></div>
+              <div class="time-label" id="time7">0:00</div>
+            </div>
           </div>
+          <audio id="audio7" src="audios/Dia%208.mp3" preload="none"></audio>
         </div>
       </div>
 
       <!-- DIA 9 -->
       <div class="col-md-6 col-lg-4">
-        <div class="day-card" style="opacity:.65;border-color:rgba(212,175,55,.5)">
+        <div class="day-card" style="border-color:rgba(212,175,55,.9);box-shadow:0 6px 22px rgba(212,175,55,.22)">
           <div class="day-badge" style="background:linear-gradient(135deg,#b8870b,#f7de6a,#b8870b)">Dia 9 ✦</div>
           <h3 class="day-title">Consagração Final</h3>
           <p class="day-description">No último dia da novena, consagre-se a Nossa Senhora Desatadora de Nós e renove sua fé para sempre.</p>
-          <div style="text-align:center;padding:12px 0;color:rgba(212,175,55,.70);font-size:.88rem;font-style:italic;">
-            <i class="fas fa-clock me-1"></i> Áudio em breve
+          <div class="audio-player" id="player8">
+            <button class="play-btn" onclick="toggleAudio(8)" id="btn8"><i class="fas fa-play"></i></button>
+            <div class="progress-wrap">
+              <div class="progress-bar-bg" onclick="seekAudio(event,8)"><div class="progress-bar-fill" id="prog8"></div></div>
+              <div class="time-label" id="time8">0:00</div>
+            </div>
           </div>
+          <audio id="audio8" src="audios/Dia%209.mp3" preload="none"></audio>
         </div>
       </div>
 
@@ -273,7 +283,7 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
-    const TOTAL = 7;
+    const TOTAL = 9;
 
     function fmtTime(s) {
       if (isNaN(s)) return '0:00';
