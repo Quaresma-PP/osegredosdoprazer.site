@@ -204,6 +204,40 @@
 
         /* Knot ribbon decorative */
         .knot-ornament { color: rgba(212,175,55,0.55); letter-spacing: 6px; font-size: 0.85rem; }
+
+        /* Premium Cards */
+        .premium-card {
+          background: rgba(8,18,50,.92);
+          border: 2px solid rgba(212,175,55,.55);
+          border-radius: 20px; overflow: hidden;
+          transition: transform .3s, box-shadow .3s;
+          box-shadow: 0 4px 20px rgba(0,0,0,.30);
+          height: 100%; display: flex; flex-direction: column;
+        }
+        .premium-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(212,175,55,.30); border-color: rgba(212,175,55,.9); }
+        .premium-card-header { padding: 28px 20px 18px; text-align: center; background: linear-gradient(180deg,rgba(12,26,70,.80),transparent); }
+        .premium-icon { font-size: 46px; color: #d4af37; margin-bottom: 12px; display: block; }
+        .premium-badge { background: linear-gradient(135deg,#b8870b,#f7de6a,#b8870b); color: #06103a; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 10px; font-family: 'Cinzel',serif; }
+        .premium-title { font-family: 'Cinzel',serif; color: #d4af37; font-size: 1.1rem; font-weight: 700; margin-bottom: 0; }
+        .premium-body { padding: 0 20px 24px; flex: 1; display: flex; flex-direction: column; }
+        .premium-desc { color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.6; margin: 14px 0 18px; flex: 1; }
+        .btn-acessar-premium {
+          background: linear-gradient(135deg,#b8870b 0%,#f7de6a 50%,#b8870b 100%);
+          background-size: 200% auto; color: #06103a; border: none; font-weight: bold;
+          padding: 12px 20px; border-radius: 30px; font-size: .92rem; width: 100%;
+          transition: all .3s; font-family: 'Cinzel',serif; text-decoration: none;
+          display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+        }
+        .btn-acessar-premium:hover { background-position: right center; color: #06103a; transform: translateY(-2px); }
+        .btn-comprar-premium {
+          background: transparent; color: #d4af37;
+          border: 2px solid rgba(212,175,55,.6); font-weight: bold;
+          padding: 12px 20px; border-radius: 30px; font-size: .92rem; width: 100%;
+          transition: all .3s; font-family: 'Cinzel',serif; text-decoration: none;
+          display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-comprar-premium:hover { background: rgba(212,175,55,.12); border-color: #d4af37; color: #f7de6a; }
+        .lock-info { font-size: .75rem; color: rgba(212,175,55,.5); text-align: center; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -355,6 +389,124 @@
             </div>
         </section>
 
+        <div class="section-divider"><div class="divider-line"></div><div class="divider-icon"><i class="fas fa-crown"></i></div><div class="divider-line"></div></div>
+
+        <!-- Biblioteca Premium -->
+        <section id="biblioteca-premium" class="py-5">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10 text-center">
+                <p style="color:rgba(212,175,55,.65);letter-spacing:4px;font-size:.72rem;font-family:'Cinzel',serif;">— ✦ BIBLIOTECA SAGRADA ✦ —</p>
+                <h2 class="title-font golden-text display-5 mb-2 section-heading">Conteúdo Premium Exclusivo</h2>
+                <p class="text-white fs-5 mb-5" style="max-width:580px;margin:0 auto 3rem;">Materiais sagrados para aprofundar sua vida espiritual. Cada produto desbloqueado automaticamente após a compra.</p>
+              </div>
+            </div>
+            <div class="row g-4 justify-content-center" id="premium-cards">
+
+              <!-- Poder dos 4 Arcanjos -->
+              <div class="col-sm-6 col-xl-3">
+                <div class="premium-card">
+                  <div class="premium-card-header">
+                    <span class="premium-icon"><i class="fas fa-shield-halved"></i></span>
+                    <div class="premium-badge">COMPLETO</div>
+                    <h3 class="premium-title">Poder dos 4 Arcanjos</h3>
+                  </div>
+                  <div class="premium-body">
+                    <p class="premium-desc">Novena de 9 dias, áudios de invocação, rituais sagrados e curso devocional em 7 lições.</p>
+                    <a id="btn-poder-dos-arcanjos"
+                       href="https://pay.ticto.com.br/OXXXXXXXX"
+                       class="btn-comprar-premium"
+                       data-produto="poder-dos-arcanjos"
+                       data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                       data-url-acesso="../poder-dos-arcanjos/">
+                      <i class="fas fa-lock"></i> Desbloquear
+                    </a>
+                    <p class="lock-info" id="info-poder-dos-arcanjos"><i class="fas fa-lock me-1"></i>Disponível após a compra</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 30 Orações São Francisco -->
+              <div class="col-sm-6 col-xl-3">
+                <div class="premium-card">
+                  <div class="premium-card-header">
+                    <span class="premium-icon"><i class="fas fa-dove"></i></span>
+                    <div class="premium-badge">DEVOÇÃO</div>
+                    <h3 class="premium-title">30 Orações de São Francisco</h3>
+                  </div>
+                  <div class="premium-body">
+                    <p class="premium-desc">Trinta orações atribuídas a São Francisco de Assis para paz, cura, natureza e consagração.</p>
+                    <a id="btn-30-oracoes-sao-francisco"
+                       href="https://pay.ticto.com.br/OXXXXXXXX"
+                       class="btn-comprar-premium"
+                       data-produto="30-oracoes-sao-francisco"
+                       data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                       data-url-acesso="../30-oracoes-sao-francisco/">
+                      <i class="fas fa-lock"></i> Desbloquear
+                    </a>
+                    <p class="lock-info" id="info-30-oracoes-sao-francisco"><i class="fas fa-lock me-1"></i>Disponível após a compra</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Músicas dos Anjos -->
+              <div class="col-sm-6 col-xl-3">
+                <div class="premium-card">
+                  <div class="premium-card-header">
+                    <span class="premium-icon"><i class="fas fa-music"></i></span>
+                    <div class="premium-badge">CONTEMPLAÇÃO</div>
+                    <h3 class="premium-title">Músicas dos Anjos</h3>
+                  </div>
+                  <div class="premium-body">
+                    <p class="premium-desc">12 músicas sagradas selecionadas — gregorianas, dos arcanjos e instrumentais para oração.</p>
+                    <a id="btn-musicas-dos-anjos-premium"
+                       href="https://pay.ticto.com.br/OXXXXXXXX"
+                       class="btn-comprar-premium"
+                       data-produto="musicas-dos-anjos-premium"
+                       data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                       data-url-acesso="../musicas-dos-anjos-premium/">
+                      <i class="fas fa-lock"></i> Desbloquear
+                    </a>
+                    <p class="lock-info" id="info-musicas-dos-anjos-premium"><i class="fas fa-lock me-1"></i>Disponível após a compra</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Grimório dos Arcanjos -->
+              <div class="col-sm-6 col-xl-3">
+                <div class="premium-card" style="border-color:rgba(212,175,55,.85)">
+                  <div class="premium-card-header">
+                    <span class="premium-icon"><i class="fas fa-book-open"></i></span>
+                    <div class="premium-badge" style="background:linear-gradient(135deg,#7b2fff,#b44fff,#7b2fff)">EXCLUSIVO</div>
+                    <h3 class="premium-title">Grimório dos Arcanjos</h3>
+                  </div>
+                  <div class="premium-body">
+                    <p class="premium-desc">Guia completo: cores, símbolos, invocações, rituais e orações de cada arcanjo. PDF para download.</p>
+                    <a id="btn-grimorio-dos-arcanjos"
+                       href="https://pay.ticto.com.br/OXXXXXXXX"
+                       class="btn-comprar-premium"
+                       data-produto="grimorio-dos-arcanjos"
+                       data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                       data-url-acesso="../grimorio-dos-arcanjos/">
+                      <i class="fas fa-lock"></i> Desbloquear
+                    </a>
+                    <p class="lock-info" id="info-grimorio-dos-arcanjos"><i class="fas fa-lock me-1"></i>Disponível após a compra</p>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /row -->
+
+            <!-- CTA login para não logados -->
+            <div id="premium-login-cta" class="text-center mt-4" style="display:none">
+              <p class="text-white mb-3" style="font-size:.95rem;opacity:.75;">Já comprou? Faça login para acessar seu conteúdo.</p>
+              <a href="../login/" class="btn btn-outline-light" style="border-radius:30px;padding:10px 28px;">
+                <i class="fas fa-sign-in-alt me-2"></i>Entrar na minha conta
+              </a>
+            </div>
+          </div>
+        </section>
+
         <div class="section-divider"><div class="divider-line"></div><div class="divider-icon"><i class="fas fa-book-open"></i></div><div class="divider-line"></div></div>
 
         <!-- Quem é Nossa Senhora Desatadora de Nós? -->
@@ -468,9 +620,37 @@
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
+        // Back to top
         const btn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => { btn.style.opacity = window.pageYOffset > 300 ? '1' : '0'; });
         btn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Atualiza botões premium conforme acesso do usuário
+        (function atualizarBotoesPremium() {
+          const token = localStorage.getItem('conexao_token');
+          const produtos = ['poder-dos-arcanjos','30-oracoes-sao-francisco','musicas-dos-anjos-premium','grimorio-dos-arcanjos'];
+
+          if (!token) {
+            document.getElementById('premium-login-cta').style.display = 'block';
+            return;
+          }
+
+          produtos.forEach(function(id) {
+            const btnEl  = document.getElementById('btn-' + id);
+            const infoEl = document.getElementById('info-' + id);
+            if (!btnEl) return;
+            if (temAcesso(id)) {
+              btnEl.href = btnEl.dataset.urlAcesso;
+              btnEl.className = 'btn-acessar-premium';
+              btnEl.innerHTML = '<i class="fas fa-unlock"></i> Acessar';
+              if (infoEl) infoEl.innerHTML = '<i class="fas fa-check-circle me-1" style="color:#4caf50"></i>Conteúdo desbloqueado';
+            } else {
+              btnEl.href = btnEl.dataset.urlCompra;
+              btnEl.target = '_blank';
+            }
+          });
+        })();
     </script>
 </body></html>
