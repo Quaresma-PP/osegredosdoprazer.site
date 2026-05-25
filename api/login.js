@@ -17,17 +17,13 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ erro: 'Método não permitido' });
 
-  const { email, senha } = req.body || {};
+  const { email } = req.body || {};
   if (!email) return res.status(400).json({ erro: 'Email obrigatório' });
 
   const emailNorm = email.toLowerCase().trim();
 
-  // ── ACESSO ADMIN ──────────────────────────────────────────────
-  if (
-    emailNorm === (process.env.ADMIN_EMAIL || '').toLowerCase() &&
-    senha &&
-    senha === process.env.ADMIN_PASSWORD
-  ) {
+  // ── ACESSO ADMIN (só pelo email) ──────────────────────────────
+  if (emailNorm === (process.env.ADMIN_EMAIL || '').toLowerCase()) {
     const token = jwt.sign(
       { email: emailNorm, produtos: 'all', role: 'admin' },
       process.env.JWT_SECRET,

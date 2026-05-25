@@ -252,18 +252,6 @@
         inputmode="email"
       >
 
-      <!-- Campo de senha — visível só para admin -->
-      <div id="senhaGroup" style="display:none;margin-top:16px">
-        <label for="senha" class="field-label">Senha</label>
-        <input
-          type="password"
-          id="senha"
-          class="field-input"
-          placeholder="Senha de administrador"
-          autocomplete="current-password"
-        >
-      </div>
-
       <!-- Mensagem de erro -->
       <div id="erroMsg" style="display:none;margin-top:14px;background:rgba(220,53,69,.15);border:1px solid rgba(220,53,69,.40);border-radius:10px;padding:12px 14px;font-size:.88rem;color:#ff8a8a;text-align:left"></div>
 
@@ -278,12 +266,6 @@
 
     <p class="footer-copy">© 2025 · Novena de Nossa Senhora Desatadora de Nós</p>
 
-    <div style="margin-top:14px;text-align:center">
-      <a href="#" id="adminToggle" onclick="toggleAdmin();return false"
-         style="font-size:.72rem;color:rgba(212,175,55,.30);text-decoration:none;letter-spacing:.3px">
-        acesso administrativo
-      </a>
-    </div>
   </div>
 
   <script>
@@ -319,7 +301,6 @@
       e.preventDefault();
 
       const email  = document.getElementById('email').value.trim();
-      const senha  = document.getElementById('senha')?.value || '';
       const btn    = document.getElementById('btnEntrar');
       const erro   = document.getElementById('erroMsg');
 
@@ -331,7 +312,7 @@
         const res  = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, senha })
+          body: JSON.stringify({ email })
         });
         const data = await res.json();
 
