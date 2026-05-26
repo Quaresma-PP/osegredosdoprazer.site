@@ -309,7 +309,9 @@
       erro.style.display = 'none';
 
       try {
-        const res  = await fetch('/api/login', {
+        const apiBase = window.location.hostname.includes('vercel.app')
+          ? '' : 'https://osegredosdoprazer-site.vercel.app';
+        const res  = await fetch(apiBase + '/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
