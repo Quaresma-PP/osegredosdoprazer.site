@@ -261,6 +261,47 @@
                             <li class="nav-item"><a class="nav-link" href="https://osegredosdoprazer.site/oracoes-especiais"><i class="fas fa-dove me-2"></i>Orações Especiais</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://osegredosdoprazer.site/musicas-dos-anjos"><i class="fas fa-music me-2"></i>Músicas</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://osegredosdoprazer.site/audiolivro"><i class="fas fa-headphones me-2"></i>Áudiolivro</a></li>
+                            <li class="nav-item"><hr style="border-color:rgba(212,175,55,.25);margin:4px 8px"></li>
+                            <li class="nav-item">
+                              <a class="nav-link nav-premium" id="nav-poder-dos-arcanjos"
+                                 href="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-produto="poder-dos-arcanjos"
+                                 data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-url-acesso="../poder-dos-arcanjos/"
+                                 style="color:rgba(212,175,55,.75)">
+                                <i class="fas fa-lock me-2" id="nav-icon-poder-dos-arcanjos"></i>Arcanjos
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link nav-premium" id="nav-30-oracoes-sao-francisco"
+                                 href="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-produto="30-oracoes-sao-francisco"
+                                 data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-url-acesso="../30-oracoes-sao-francisco/"
+                                 style="color:rgba(212,175,55,.75)">
+                                <i class="fas fa-lock me-2" id="nav-icon-30-oracoes-sao-francisco"></i>S. Francisco
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link nav-premium" id="nav-musicas-dos-anjos-premium"
+                                 href="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-produto="musicas-dos-anjos-premium"
+                                 data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-url-acesso="../musicas-dos-anjos-premium/"
+                                 style="color:rgba(212,175,55,.75)">
+                                <i class="fas fa-lock me-2" id="nav-icon-musicas-dos-anjos-premium"></i>Músicas Premium
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link nav-premium" id="nav-grimorio-dos-arcanjos"
+                                 href="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-produto="grimorio-dos-arcanjos"
+                                 data-url-compra="https://pay.ticto.com.br/OXXXXXXXX"
+                                 data-url-acesso="../grimorio-dos-arcanjos/"
+                                 style="color:rgba(212,175,55,.75)">
+                                <i class="fas fa-lock me-2" id="nav-icon-grimorio-dos-arcanjos"></i>Grimório
+                              </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -477,7 +518,7 @@
                 <div class="premium-card" style="border-color:rgba(212,175,55,.85)">
                   <div class="premium-card-header">
                     <span class="premium-icon"><i class="fas fa-book-open"></i></span>
-                    <div class="premium-badge" style="background:linear-gradient(135deg,#7b2fff,#b44fff,#7b2fff)">EXCLUSIVO</div>
+                    <div class="premium-badge">EXCLUSIVO</div>
                     <h3 class="premium-title">Grimório dos Arcanjos</h3>
                   </div>
                   <div class="premium-body">
@@ -638,17 +679,36 @@
           }
 
           produtos.forEach(function(id) {
+            // card buttons
             const btnEl  = document.getElementById('btn-' + id);
             const infoEl = document.getElementById('info-' + id);
-            if (!btnEl) return;
-            if (temAcesso(id)) {
-              btnEl.href = btnEl.dataset.urlAcesso;
-              btnEl.className = 'btn-acessar-premium';
-              btnEl.innerHTML = '<i class="fas fa-unlock"></i> Acessar';
-              if (infoEl) infoEl.innerHTML = '<i class="fas fa-check-circle me-1" style="color:#4caf50"></i>Conteúdo desbloqueado';
-            } else {
-              btnEl.href = btnEl.dataset.urlCompra;
-              btnEl.target = '_blank';
+            // nav items
+            const navEl  = document.getElementById('nav-' + id);
+            const navIcon = document.getElementById('nav-icon-' + id);
+
+            const acesso = temAcesso(id);
+
+            if (btnEl) {
+              if (acesso) {
+                btnEl.href = btnEl.dataset.urlAcesso;
+                btnEl.className = 'btn-acessar-premium';
+                btnEl.innerHTML = '<i class="fas fa-unlock"></i> Acessar';
+                if (infoEl) infoEl.innerHTML = '<i class="fas fa-check-circle me-1" style="color:#4caf50"></i>Conteúdo desbloqueado';
+              } else {
+                btnEl.href = btnEl.dataset.urlCompra;
+                btnEl.target = '_blank';
+              }
+            }
+
+            if (navEl) {
+              if (acesso) {
+                navEl.href = navEl.dataset.urlAcesso;
+                navEl.style.color = '#d4af37';
+                if (navIcon) { navIcon.className = 'fas fa-unlock me-2'; }
+              } else {
+                navEl.href = navEl.dataset.urlCompra;
+                navEl.target = '_blank';
+              }
             }
           });
         })();
