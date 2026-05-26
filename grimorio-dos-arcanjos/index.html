@@ -330,26 +330,17 @@ function gerarPDF() {
   const downloadSection = document.getElementById('download-section');
   downloadSection.style.display = 'none';
 
-  // Aplica cores claras temporariamente para o PDF ficar legível
   const st = document.createElement('style');
   st.id = 'pdf-colors';
   st.textContent = `
     body { background: #fff !important; }
-    #conteudo-premium { background: #fff !important; }
-    #conteudo-premium * { color: #1a1a2e !important; }
+    #conteudo-premium, #conteudo-premium * { color: #111 !important; background-color: transparent !important; }
     #conteudo-premium .golden-text, #conteudo-premium .arcanjo-sec-name { color: #7a5500 !important; }
     #conteudo-premium .grimoire-subtitle { color: #5a4400 !important; opacity:1 !important; }
-    #conteudo-premium .arcanjo-section { background: #f5f5f0 !important; border-color: #ccc !important; }
-    #conteudo-premium .arcanjo-sec-icon { background: #e8e8e0 !important; border-color: #999 !important; }
-    #conteudo-premium .corr-item { background: #ede8df !important; }
-    #conteudo-premium .corr-label { color: #666 !important; opacity:1 !important; }
-    #conteudo-premium .corr-value { color: #333 !important; }
-    #conteudo-premium .invocation-box { background: #f0e8d0 !important; border-color: #b8870b !important; }
-    #conteudo-premium .grimoire-text, #conteudo-premium .grimoire-text p { color: #222 !important; }
-    #conteudo-premium .ritual-steps li { color: #333 !important; border-color: #ddd !important; }
-    #conteudo-premium .ritual-steps li::before { background: #e8d8a0 !important; color: #7a5500 !important; }
-    #conteudo-premium .arcanjo-sec-subtitle { color: #555 !important; opacity:1 !important; }
-    #conteudo-premium .divider-line { background: linear-gradient(to right,transparent,#b8870b,transparent) !important; }
+    #conteudo-premium .arcanjo-section { background-color: #f5f5f0 !important; }
+    #conteudo-premium .corr-item { background-color: #ede8df !important; }
+    #conteudo-premium .invocation-box { background-color: #f0e8d0 !important; }
+    #conteudo-premium .arcanjo-sec-subtitle, #conteudo-premium .corr-label { color: #555 !important; opacity:1 !important; }
   `;
   document.head.appendChild(st);
 
@@ -367,15 +358,17 @@ function gerarPDF() {
     downloadSection.style.display = 'block';
   };
 
-  html2pdf().set(opt).from(content).save().then(() => {
-    restore();
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
-    btn.disabled = false;
-  }).catch(() => {
-    restore();
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
-    btn.disabled = false;
-  });
+  setTimeout(() => {
+    html2pdf().set(opt).from(content).save().then(() => {
+      restore();
+      btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
+      btn.disabled = false;
+    }).catch(() => {
+      restore();
+      btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
+      btn.disabled = false;
+    });
+  }, 300);
 }
 </script>
 </body></html>

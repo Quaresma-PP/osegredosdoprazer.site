@@ -653,31 +653,24 @@ function gerarPDF() {
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
   btn.disabled = true;
 
-  // Abre todos os acordeões para o PDF capturar
+  // Abre todos os acordeões e abas para o PDF capturar tudo
   document.querySelectorAll('.novena-body,.licao-body').forEach(b => { b.style.display = 'block'; });
-  // Mostra todas as abas
   ['novena','audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'block'; });
 
-  // Aplica cores claras temporariamente para o PDF ficar legível
+  // Injeta estilos claros para o PDF ficar com texto preto legível
   const st = document.createElement('style');
   st.id = 'pdf-colors';
   st.textContent = `
     body { background: #fff !important; }
-    #conteudo-premium { background: #fff !important; }
-    #conteudo-premium * { color: #1a1a2e !important; }
-    #conteudo-premium .golden-text { color: #7a5500 !important; }
-    #conteudo-premium .novena-day-title, #conteudo-premium .licao-title, #conteudo-premium .ritual-card-title, #conteudo-premium .audio-name { color: #7a5500 !important; }
-    #conteudo-premium .novena-day { background: #f5f5f0 !important; border-color: #ccc !important; }
-    #conteudo-premium .novena-day-header { background: #f5f5f0 !important; }
-    #conteudo-premium .audio-arcanjo, #conteudo-premium .ritual-card, #conteudo-premium .licao-card { background: #f5f5f0 !important; border-color: #ddd !important; }
-    #conteudo-premium .meditation-box, #conteudo-premium .licao-destaque { background: #f0e8d0 !important; border-color: #b8870b !important; color: #444 !important; }
-    #conteudo-premium .prayer-text, #conteudo-premium .licao-text { color: #222 !important; }
-    #conteudo-premium .prayer-text p, #conteudo-premium .licao-text p { color: #222 !important; }
-    #conteudo-premium .ritual-steps li { color: #333 !important; border-color: #ddd !important; }
-    #conteudo-premium .ritual-steps li::before { background: #e8d8a0 !important; color: #7a5500 !important; }
-    #conteudo-premium .novena-badge { background: linear-gradient(135deg,#b8870b,#f7de6a) !important; color: #06103a !important; }
-    #conteudo-premium .novena-day-sub, #conteudo-premium .audio-role, #conteudo-premium .licao-dur, #conteudo-premium .video-label { color: #555 !important; opacity:1 !important; }
-    #conteudo-premium .novena-day-arcanjo { color: #333 !important; }
+    #conteudo-premium, #conteudo-premium * { color: #111 !important; background-color: transparent !important; }
+    #conteudo-premium .golden-text, #conteudo-premium .novena-day-title,
+    #conteudo-premium .licao-title, #conteudo-premium .ritual-card-title,
+    #conteudo-premium .audio-name { color: #7a5500 !important; }
+    #conteudo-premium .novena-day, #conteudo-premium .audio-arcanjo,
+    #conteudo-premium .ritual-card, #conteudo-premium .licao-card { background-color: #f5f5f0 !important; }
+    #conteudo-premium .meditation-box, #conteudo-premium .licao-destaque { background-color: #f0e8d0 !important; }
+    #conteudo-premium .novena-day-sub, #conteudo-premium .audio-role,
+    #conteudo-premium .licao-dur, #conteudo-premium .video-label { color: #555 !important; opacity:1 !important; }
   `;
   document.head.appendChild(st);
 
@@ -691,20 +684,25 @@ function gerarPDF() {
     pagebreak: { mode: ['avoid-all','css','legacy'] }
   };
 
-  html2pdf().set(opt).from(content).save().then(() => {
+  const restore = () => {
     document.getElementById('pdf-colors')?.remove();
-    // Restaura layout
     ['audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'none'; });
     document.querySelectorAll('.novena-body,.licao-body').forEach(b => {
       if (!b.classList.contains('open')) b.style.display = 'none';
     });
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
-    btn.disabled = false;
-  }).catch(() => {
-    document.getElementById('pdf-colors')?.remove();
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
-    btn.disabled = false;
-  });
+  };
+
+  setTimeout(() => {
+    html2pdf().set(opt).from(content).save().then(() => {
+      restore();
+      btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
+      btn.disabled = false;
+    }).catch(() => {
+      restore();
+      btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
+      btn.disabled = false;
+    });
+  }, 300);
 }
 </script>
 </body></html>
