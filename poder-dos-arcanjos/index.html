@@ -448,14 +448,6 @@
       </ol>
     </div>
 
-    <div class="text-center mt-4" id="download-section-rituais">
-      <div style="background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(8,18,50,.95));border:2px solid rgba(212,175,55,.60);border-radius:18px;padding:28px 20px">
-        <i class="fas fa-file-pdf" style="font-size:44px;color:#d4af37;margin-bottom:12px;display:block"></i>
-        <h3 class="title-font golden-text mb-2" style="font-size:1.2rem">Baixar Programa Completo em PDF</h3>
-        <p style="color:rgba(255,255,255,.55);font-size:.88rem;margin-bottom:18px">Salve a novena, os rituais e o curso no seu dispositivo para consultar offline.</p>
-        <button class="download-btn" onclick="gerarPDF()"><i class="fas fa-download"></i> Baixar PDF Agora</button>
-      </div>
-    </div>
   </div><!-- /tab-rituais -->
 
   <!-- ═══════════ ABA: CURSO ═══════════ -->
@@ -603,7 +595,6 @@
 
 <footer class="site-footer"><p class="mb-0">© 2025 · Poder dos 4 Arcanjos · Conexão Prosperidade</p></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="../js/auth.js"></script>
 <script>
 protegerPagina('poder-dos-arcanjos');
@@ -648,62 +639,5 @@ function toggleLicao(el) {
   }
 }
 
-function gerarPDF() {
-  const btn = document.querySelector('.download-btn');
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
-  btn.disabled = true;
-
-  // Abre todos os acordeões e abas para o PDF capturar tudo
-  document.querySelectorAll('.novena-body,.licao-body').forEach(b => { b.style.display = 'block'; });
-  ['novena','audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'block'; });
-
-  const content = document.getElementById('conteudo-premium');
-  const opt = {
-    margin: [10,12,10,12],
-    filename: 'Poder-dos-4-Arcanjos.pdf',
-    image: { type: 'jpeg', quality: 0.90 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      onclone: function(clonedDoc) {
-        clonedDoc.body.style.background = '#ffffff';
-        const s = clonedDoc.createElement('style');
-        s.textContent = `
-          body, html { background: #fff !important; }
-          * { color: #111111 !important; background-color: transparent !important; }
-          .golden-text, .novena-day-title, .licao-title,
-          .ritual-card-title, .audio-name { color: #7a5500 !important; }
-          .novena-day, .audio-arcanjo, .ritual-card,
-          .licao-card { background-color: #f5f5f0 !important; }
-          .meditation-box, .licao-destaque { background-color: #f0e8d0 !important; }
-          .novena-day-sub, .audio-role, .licao-dur,
-          .video-label { color: #555 !important; opacity: 1 !important; }
-          .novena-badge { background: linear-gradient(135deg,#b8870b,#f7de6a) !important; color: #06103a !important; }
-        `;
-        clonedDoc.head.appendChild(s);
-      }
-    },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all','css','legacy'] }
-  };
-
-  const restore = () => {
-    ['audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'none'; });
-    document.querySelectorAll('.novena-body,.licao-body').forEach(b => {
-      if (!b.classList.contains('open')) b.style.display = 'none';
-    });
-  };
-
-  html2pdf().set(opt).from(content).save().then(() => {
-    restore();
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
-    btn.disabled = false;
-  }).catch(() => {
-    restore();
-    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
-    btn.disabled = false;
-  });
-}
 </script>
 </body></html>
