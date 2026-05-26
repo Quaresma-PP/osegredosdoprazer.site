@@ -114,7 +114,7 @@
       <li><i class="fas fa-check-circle"></i> Rituais completos + PDF</li>
       <li><i class="fas fa-check-circle"></i> Curso devocional em 7 lições</li>
     </ul>
-    <a href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-comprar"><i class="fas fa-lock-open"></i> Quero Ter Acesso</a><br>
+    <a href="https://checkout.ticto.app/O4E158A76" class="btn-comprar"><i class="fas fa-lock-open"></i> Quero Ter Acesso</a><br>
     <a href="../login/" class="btn-ja-comprei">Já comprei — Entrar</a>
   </div>
 </div>
@@ -652,32 +652,57 @@ function gerarPDF() {
   const btn = document.querySelector('.download-btn');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
   btn.disabled = true;
+
   // Abre todos os acordeões para o PDF capturar
-  document.querySelectorAll('.novena-body,.licao-body').forEach(b => {
-    b.style.display = 'block';
-  });
+  document.querySelectorAll('.novena-body,.licao-body').forEach(b => { b.style.display = 'block'; });
   // Mostra todas as abas
-  ['novena','audios','rituais','curso'].forEach(t => {
-    document.getElementById('tab-' + t).style.display = 'block';
-  });
+  ['novena','audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'block'; });
+
+  // Aplica cores claras temporariamente para o PDF ficar legível
+  const st = document.createElement('style');
+  st.id = 'pdf-colors';
+  st.textContent = `
+    body { background: #fff !important; }
+    #conteudo-premium { background: #fff !important; }
+    #conteudo-premium * { color: #1a1a2e !important; }
+    #conteudo-premium .golden-text { color: #7a5500 !important; }
+    #conteudo-premium .novena-day-title, #conteudo-premium .licao-title, #conteudo-premium .ritual-card-title, #conteudo-premium .audio-name { color: #7a5500 !important; }
+    #conteudo-premium .novena-day { background: #f5f5f0 !important; border-color: #ccc !important; }
+    #conteudo-premium .novena-day-header { background: #f5f5f0 !important; }
+    #conteudo-premium .audio-arcanjo, #conteudo-premium .ritual-card, #conteudo-premium .licao-card { background: #f5f5f0 !important; border-color: #ddd !important; }
+    #conteudo-premium .meditation-box, #conteudo-premium .licao-destaque { background: #f0e8d0 !important; border-color: #b8870b !important; color: #444 !important; }
+    #conteudo-premium .prayer-text, #conteudo-premium .licao-text { color: #222 !important; }
+    #conteudo-premium .prayer-text p, #conteudo-premium .licao-text p { color: #222 !important; }
+    #conteudo-premium .ritual-steps li { color: #333 !important; border-color: #ddd !important; }
+    #conteudo-premium .ritual-steps li::before { background: #e8d8a0 !important; color: #7a5500 !important; }
+    #conteudo-premium .novena-badge { background: linear-gradient(135deg,#b8870b,#f7de6a) !important; color: #06103a !important; }
+    #conteudo-premium .novena-day-sub, #conteudo-premium .audio-role, #conteudo-premium .licao-dur, #conteudo-premium .video-label { color: #555 !important; opacity:1 !important; }
+    #conteudo-premium .novena-day-arcanjo { color: #333 !important; }
+  `;
+  document.head.appendChild(st);
+
   const content = document.getElementById('conteudo-premium');
   const opt = {
     margin: [10,12,10,12],
     filename: 'Poder-dos-4-Arcanjos.pdf',
     image: { type: 'jpeg', quality: 0.90 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#0a1640' },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: ['avoid-all','css','legacy'] }
   };
+
   html2pdf().set(opt).from(content).save().then(() => {
+    document.getElementById('pdf-colors')?.remove();
     // Restaura layout
-    ['audios','rituais','curso'].forEach(t => {
-      document.getElementById('tab-' + t).style.display = 'none';
-    });
+    ['audios','rituais','curso'].forEach(t => { document.getElementById('tab-' + t).style.display = 'none'; });
     document.querySelectorAll('.novena-body,.licao-body').forEach(b => {
       if (!b.classList.contains('open')) b.style.display = 'none';
     });
     btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
+    btn.disabled = false;
+  }).catch(() => {
+    document.getElementById('pdf-colors')?.remove();
+    btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
     btn.disabled = false;
   });
 }

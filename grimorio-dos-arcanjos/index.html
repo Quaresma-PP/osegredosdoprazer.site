@@ -77,7 +77,7 @@
     <div class="wall-icon"><i class="fas fa-book-open"></i></div>
     <h2 class="wall-title">Grimório dos Arcanjos</h2>
     <p class="wall-text">Este conteúdo é exclusivo para membros. Adquira o acesso ao livro sagrado dos arcanjos — com correspondências, invocações, rituais devocionais e oração de cada arcanjo. Disponível para download em PDF.</p>
-    <a href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-comprar"><i class="fas fa-lock-open"></i> Quero Ter Acesso</a><br>
+    <a href="https://checkout.ticto.app/O05856C5B" class="btn-comprar"><i class="fas fa-lock-open"></i> Quero Ter Acesso</a><br>
     <a href="../login/" class="btn-ja-comprei">Já comprei — Entrar</a>
   </div>
 </div>
@@ -330,21 +330,49 @@ function gerarPDF() {
   const downloadSection = document.getElementById('download-section');
   downloadSection.style.display = 'none';
 
+  // Aplica cores claras temporariamente para o PDF ficar legível
+  const st = document.createElement('style');
+  st.id = 'pdf-colors';
+  st.textContent = `
+    body { background: #fff !important; }
+    #conteudo-premium { background: #fff !important; }
+    #conteudo-premium * { color: #1a1a2e !important; }
+    #conteudo-premium .golden-text, #conteudo-premium .arcanjo-sec-name { color: #7a5500 !important; }
+    #conteudo-premium .grimoire-subtitle { color: #5a4400 !important; opacity:1 !important; }
+    #conteudo-premium .arcanjo-section { background: #f5f5f0 !important; border-color: #ccc !important; }
+    #conteudo-premium .arcanjo-sec-icon { background: #e8e8e0 !important; border-color: #999 !important; }
+    #conteudo-premium .corr-item { background: #ede8df !important; }
+    #conteudo-premium .corr-label { color: #666 !important; opacity:1 !important; }
+    #conteudo-premium .corr-value { color: #333 !important; }
+    #conteudo-premium .invocation-box { background: #f0e8d0 !important; border-color: #b8870b !important; }
+    #conteudo-premium .grimoire-text, #conteudo-premium .grimoire-text p { color: #222 !important; }
+    #conteudo-premium .ritual-steps li { color: #333 !important; border-color: #ddd !important; }
+    #conteudo-premium .ritual-steps li::before { background: #e8d8a0 !important; color: #7a5500 !important; }
+    #conteudo-premium .arcanjo-sec-subtitle { color: #555 !important; opacity:1 !important; }
+    #conteudo-premium .divider-line { background: linear-gradient(to right,transparent,#b8870b,transparent) !important; }
+  `;
+  document.head.appendChild(st);
+
   const opt = {
     margin: [10, 12, 10, 12],
     filename: 'Grimorio-dos-Arcanjos.pdf',
     image: { type: 'jpeg', quality: 0.92 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#0a1640' },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
 
-  html2pdf().set(opt).from(content).save().then(() => {
+  const restore = () => {
+    document.getElementById('pdf-colors')?.remove();
     downloadSection.style.display = 'block';
+  };
+
+  html2pdf().set(opt).from(content).save().then(() => {
+    restore();
     btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Novamente';
     btn.disabled = false;
   }).catch(() => {
-    downloadSection.style.display = 'block';
+    restore();
     btn.innerHTML = '<i class="fas fa-download"></i> Baixar PDF Agora';
     btn.disabled = false;
   });
