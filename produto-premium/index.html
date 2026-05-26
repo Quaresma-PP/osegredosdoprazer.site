@@ -78,8 +78,8 @@
             <li><i class="fas fa-check-circle"></i> Rituais + PDF para download</li>
             <li><i class="fas fa-check-circle"></i> Curso devocional em 7 lições</li>
           </ul>
-          <a href="../poder-dos-arcanjos/" class="btn-acessar"><i class="fas fa-shield-halved"></i> Acessar</a>
-          <div class="lock-badge"><i class="fas fa-lock"></i> Conteúdo exclusivo para membros</div>
+          <a id="btn-pp-poder-dos-arcanjos" href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-acessar" data-produto="poder-dos-arcanjos" data-acesso="../poder-dos-arcanjos/" data-compra="https://pay.ticto.com.br/OXXXXXXXX" style="background:rgba(255,255,255,.08);color:#d4af37;border:2px solid rgba(212,175,55,.4)"><i class="fas fa-lock"></i> Desbloquear</a>
+          <div class="lock-badge" id="info-pp-poder-dos-arcanjos"><i class="fas fa-lock"></i> Disponível após a compra</div>
         </div>
       </div>
     </div>
@@ -100,8 +100,8 @@
             <li><i class="fas fa-check-circle"></i> Com reflexões espirituais</li>
             <li><i class="fas fa-check-circle"></i> Tradição franciscana autêntica</li>
           </ul>
-          <a href="../30-oracoes-sao-francisco/" class="btn-acessar"><i class="fas fa-dove"></i> Acessar</a>
-          <div class="lock-badge"><i class="fas fa-lock"></i> Conteúdo exclusivo para membros</div>
+          <a id="btn-pp-30-oracoes-sao-francisco" href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-acessar" data-produto="30-oracoes-sao-francisco" data-acesso="../30-oracoes-sao-francisco/" data-compra="https://pay.ticto.com.br/OXXXXXXXX" style="background:rgba(255,255,255,.08);color:#d4af37;border:2px solid rgba(212,175,55,.4)"><i class="fas fa-lock"></i> Desbloquear</a>
+          <div class="lock-badge" id="info-pp-30-oracoes-sao-francisco"><i class="fas fa-lock"></i> Disponível após a compra</div>
         </div>
       </div>
     </div>
@@ -122,8 +122,8 @@
             <li><i class="fas fa-check-circle"></i> Músicas dos arcanjos</li>
             <li><i class="fas fa-check-circle"></i> Instrumentais para oração</li>
           </ul>
-          <a href="../musicas-dos-anjos-premium/" class="btn-acessar"><i class="fas fa-music"></i> Acessar</a>
-          <div class="lock-badge"><i class="fas fa-lock"></i> Conteúdo exclusivo para membros</div>
+          <a id="btn-pp-musicas-dos-anjos-premium" href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-acessar" data-produto="musicas-dos-anjos-premium" data-acesso="../musicas-dos-anjos-premium/" data-compra="https://pay.ticto.com.br/OXXXXXXXX" style="background:rgba(255,255,255,.08);color:#d4af37;border:2px solid rgba(212,175,55,.4)"><i class="fas fa-lock"></i> Desbloquear</a>
+          <div class="lock-badge" id="info-pp-musicas-dos-anjos-premium"><i class="fas fa-lock"></i> Disponível após a compra</div>
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@
       <div class="product-card" style="border-color:rgba(212,175,55,.85)">
         <div class="product-card-header">
           <span class="product-icon"><i class="fas fa-book-open"></i></span>
-          <div class="product-badge" style="background:linear-gradient(135deg,#7b2fff,#b44fff,#7b2fff)">EXCLUSIVO</div>
+          <div class="product-badge">EXCLUSIVO</div>
           <h3 class="product-title">Grimório dos Arcanjos</h3>
         </div>
         <div class="product-body">
@@ -144,8 +144,8 @@
             <li><i class="fas fa-check-circle"></i> Invocações e selos</li>
             <li><i class="fas fa-check-circle"></i> Download em PDF</li>
           </ul>
-          <a href="../grimorio-dos-arcanjos/" class="btn-acessar"><i class="fas fa-book-open"></i> Acessar</a>
-          <div class="lock-badge"><i class="fas fa-lock"></i> Conteúdo exclusivo para membros</div>
+          <a id="btn-pp-grimorio-dos-arcanjos" href="https://pay.ticto.com.br/OXXXXXXXX" class="btn-acessar" data-produto="grimorio-dos-arcanjos" data-acesso="../grimorio-dos-arcanjos/" data-compra="https://pay.ticto.com.br/OXXXXXXXX" style="background:rgba(255,255,255,.08);color:#d4af37;border:2px solid rgba(212,175,55,.4)"><i class="fas fa-lock"></i> Desbloquear</a>
+          <div class="lock-badge" id="info-pp-grimorio-dos-arcanjos"><i class="fas fa-lock"></i> Disponível após a compra</div>
         </div>
       </div>
     </div>
@@ -155,4 +155,25 @@
 
 <footer class="site-footer"><p class="mb-0">© 2025 · Biblioteca Sagrada · Conexão Prosperidade</p></footer>
 <script src="../inicio-oracoes-principal/js/bootstrap.bundle.min.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  (function() {
+    var produtos = ['poder-dos-arcanjos','30-oracoes-sao-francisco','musicas-dos-anjos-premium','grimorio-dos-arcanjos'];
+    produtos.forEach(function(id) {
+      var btn = document.getElementById('btn-pp-' + id);
+      var info = document.getElementById('info-pp-' + id);
+      if (!btn) return;
+      if (temAcesso(id)) {
+        btn.href = btn.dataset.acesso;
+        btn.removeAttribute('target');
+        btn.style.cssText = '';
+        btn.innerHTML = '<i class="fas fa-unlock"></i> Acessar';
+        if (info) info.innerHTML = '<i class="fas fa-check-circle" style="color:#4caf50"></i> Conteúdo desbloqueado';
+      } else {
+        btn.href = btn.dataset.compra;
+        btn.target = '_blank';
+      }
+    });
+  })();
+</script>
 </body></html>
