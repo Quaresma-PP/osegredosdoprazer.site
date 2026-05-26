@@ -8,11 +8,11 @@ const supabase = createClient(
 // Mapeamento: ID do produto na Ticto → ID interno do sistema
 // Substitua pelos IDs reais dos seus produtos na Ticto
 const PRODUTO_MAP = {
-  'poder-arcanjos':    'poder-dos-arcanjos',
-  'francisco':         '30-oracoes-sao-francisco',
-  'musicas-anjos':     'musicas-dos-anjos-premium',
-  'grimorio':          'grimorio-dos-arcanjos',
-  'pacote-completo':   'all',
+  '110945': 'novena-principal',
+  '112172': 'poder-dos-arcanjos',
+  '111372': '30-oracoes-sao-francisco',
+  '111371': 'musicas-dos-anjos-premium',
+  '112375': 'grimorio-dos-arcanjos',
 };
 
 const TODOS_PRODUTOS = [
